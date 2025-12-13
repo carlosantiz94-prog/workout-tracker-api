@@ -17,4 +17,14 @@ router.get('/:id', (req, res) => {
     else res.status(404).json({ error: 'Exercise not found' });
 });
 
+router.post('/', (req, res) => {
+    const newExercise = {
+        id: exercises.length + 1,
+        name: req.body.name,
+        muscle: req.body.muscle
+    };
+    exercises.push(newExercise);
+    res.status(201).json({ message: 'Exercise created', data: newExercise });
+});
+
 module.exports = router;
