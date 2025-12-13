@@ -47,4 +47,15 @@ router.patch('/:id', (req, res) => {
     }
 });
 
+router.delete('/:id', (req, res) => {
+    const initialLength = exercises.length;
+    exercises = exercises.filter(e => e.id != req.params.id);
+    
+    if (exercises.length < initialLength) {
+        res.status(204).send();
+    } else {
+        res.status(404).json({ error: 'Not found' });
+    }
+});
+
 module.exports = router;
