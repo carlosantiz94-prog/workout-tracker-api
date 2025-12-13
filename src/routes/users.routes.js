@@ -47,4 +47,13 @@ router.delete('/:id', (req, res) => {
     res.status(204).send();
 });
 
+// GET con Query String (ej: ?limit=10)
+router.get('/', (req, res) => {
+    const limit = req.query.limit;
+    if(limit) {
+        return res.status(200).json(users.slice(0, limit));
+    }
+    res.status(200).json(users);
+});
+
 module.exports = router;
