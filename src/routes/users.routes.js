@@ -41,4 +41,10 @@ router.patch('/:id', (req, res) => {
     res.status(200).json({ message: `User ${req.params.id} patched` });
 });
 
+// DELETE Eliminar
+router.delete('/:id', (req, res) => {
+    users = users.filter(u => u.id != req.params.id);
+    res.status(204).send();
+});
+
 module.exports = router;
