@@ -58,4 +58,13 @@ router.delete('/:id', (req, res) => {
     }
 });
 
+router.get('/', (req, res) => {
+    const { muscle } = req.query;
+    if (muscle) {
+        const filtered = exercises.filter(e => e.muscle.toLowerCase() === muscle.toLowerCase());
+        return res.status(200).json(filtered);
+    }
+    res.status(200).json(exercises);
+});
+
 module.exports = router;
