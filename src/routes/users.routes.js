@@ -30,5 +30,15 @@ router.post('/', (req, res) => {
     users.push(newUser);
     res.status(201).json({ message: 'User created', data: newUser });
 });
+// PUT Actualizar completo
+router.put('/:id', (req, res) => {
+    // Lógica simplificada
+    res.status(200).json({ message: `User ${req.params.id} updated completely` });
+});
+
+// PATCH Actualizar parcial
+router.patch('/:id', (req, res) => {
+    res.status(200).json({ message: `User ${req.params.id} patched` });
+});
 
 module.exports = router;
