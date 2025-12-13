@@ -19,4 +19,16 @@ router.get('/:id', (req, res) => {
     else res.status(404).json({ error: 'Workout not found' });
 });
 
+// POST: Crear nuevo workout
+router.post('/', (req, res) => {
+    const newWorkout = {
+        id: workouts.length + 1,
+        name: req.body.name,
+        mode: req.body.mode,
+        equipment: req.body.equipment
+    };
+    workouts.push(newWorkout);
+    res.status(201).json({ message: 'Workout created', data: newWorkout });
+});
+
 module.exports = router;
