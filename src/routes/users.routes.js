@@ -21,4 +21,14 @@ router.get('/:id', (req, res) => {
     else res.status(404).send('User not found');
 });
 
+// POST Crear usuario
+router.post('/', (req, res) => {
+    const newUser = {
+        id: users.length + 1,
+        ...req.body
+    };
+    users.push(newUser);
+    res.status(201).json({ message: 'User created', data: newUser });
+});
+
 module.exports = router;
