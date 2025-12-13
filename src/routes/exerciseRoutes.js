@@ -27,4 +27,24 @@ router.post('/', (req, res) => {
     res.status(201).json({ message: 'Exercise created', data: newExercise });
 });
 
+router.put('/:id', (req, res) => {
+    const index = exercises.findIndex(e => e.id == req.params.id);
+    if (index !== -1) {
+        exercises[index] = { id: parseInt(req.params.id), ...req.body };
+        res.status(200).json({ message: 'Exercise updated fully', data: exercises[index] });
+    } else {
+        res.status(404).json({ error: 'Not found' });
+    }
+});
+
+router.patch('/:id', (req, res) => {
+    const exercise = exercises.find(e => e.id == req.params.id);
+    if (exercise) {
+        if(req.body.name) exercise.name = req.body.name;
+        res.status(200).json({ message: 'Exercise patched', data: exercise });
+    } else {
+        res.status(404).json({ error: 'Not found' });
+    }
+});
+
 module.exports = router;
