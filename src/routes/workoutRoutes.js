@@ -66,4 +66,14 @@ router.delete('/:id', (req, res) => {
     }
 });
 
+// GET: Listar todos con filtro Query String
+router.get('/', (req, res) => {
+    const { mode } = req.query; // Obtener ?mode=Hard
+    if (mode) {
+        const filteredWorkouts = workouts.filter(w => w.mode.toLowerCase() === mode.toLowerCase());
+        return res.status(200).json(filteredWorkouts);
+    }
+    res.status(200).json(workouts);
+});
+
 module.exports = router;
