@@ -54,4 +54,16 @@ router.patch('/:id', (req, res) => {
     }
 });
 
+// DELETE: Borrar workout
+router.delete('/:id', (req, res) => {
+    const initialLength = workouts.length;
+    workouts = workouts.filter(w => w.id != req.params.id);
+    
+    if (workouts.length < initialLength) {
+        res.status(204).send(); // 204 No Content
+    } else {
+        res.status(404).json({ error: 'Workout not found' });
+    }
+});
+
 module.exports = router;
